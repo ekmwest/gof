@@ -12,7 +12,8 @@ const State = {
     countries: [],
     possibleCountries: [],
     step: 0,
-    points: 0
+    points: 0,
+    guesses: []
 }
 
 window.initGame = function () {
@@ -26,16 +27,32 @@ function initState(countries, possibleCountries) {
     State.possibleCountries = possibleCountries;
     State.step = null;
     State.points = 0;
+    State.guesses = [];
 }
 
 
 
 /* =====================================================================
-    ACTIONS
-    ===================================================================== */
+   Actions
+   ===================================================================== */
+
+window.continentChecboxChange = function () {
+    const checkedContinents = document.querySelectorAll('input:checked');
+    const startGameButton = document.querySelector('[data-element=start-game-button]');
+
+    if (checkedContinents.length < 1) {
+        startGameButton.classList.add('DISABLED');
+    } else {
+        startGameButton.classList.remove('DISABLED');
+    }
+}
 
 window.start = function () {
     const checkedContinents = document.querySelectorAll('input:checked');
+
+    if (checkedContinents.length < 1) {
+        return;
+    }
 
     const continents = [...checkedContinents].map(cc => cc.name);
 
@@ -50,8 +67,12 @@ window.start = function () {
 
 window.guess = function (guessedCountryCode, correctCountryCode) {
     const correctAnswer = guessedCountryCode === correctCountryCode;
+
     State.points = correctAnswer ? State.points + 1 : State.points;
-    const wait = correctAnswer ? 1000 : 3000;
+    const wait = correctAnswer ? 600 : 1600;
+    correctAnswer ? State.guesses.push(true) : State.guesses.push(false);
+
+    console.log(State.guesses);
 
     const correctElement = document.querySelector(`[data-country-code="${correctCountryCode}"]`);
     correctElement.classList.add('CORRECT');
@@ -98,7 +119,7 @@ window.next = function () {
         let sorted = selectableCountries.map(x => x.common_name);
     }
 
-    gameElement.innerHTML = stepHTML(country, selectableCountries, State.points, State.step, guessFlag, State.step, State.countries.length);
+    gameElement.innerHTML = stepHTML(country, selectableCountries, State.points, State.step, guessFlag, State.step, State.countries.length, State.guesses);
 }
 
 window.finish = function () {
@@ -108,16 +129,24 @@ window.finish = function () {
 
 
 /* =====================================================================
-    HTML
-    ===================================================================== */
+   Html
+   ===================================================================== */
 
-function stepHTML(country, selectableCountries, points, possiblePoints, guessFlag, progressValue, progressMax) {
-    let html = '';
+function stepHTML(country, selectableCountries, points, possiblePoints, guessFlag, progressValue, progressMax, guesses) {
 
-    html += `<p class="score">${points} / ${possiblePoints}</p>`;
-    html += `<br>`;
-    html += `<progress class="game-progress" value="${progressValue}" max="${progressMax}"></progress>`;
-    html += '<hr>';
+    let html = "<div class='answers'>";
+
+    for (let s = 0; s < progressMax; s++) {
+        if (guesses[s] === true) {
+            html += "<span class='correct'></span>";
+        } else if (guesses[s] === false) {
+            html += "<span class='wrong'></span>";
+        } else {
+            html += "<span></span>";
+        }
+    }
+
+    html += "</div>";
 
     if (guessFlag) {
         html += `<h1 class="guess-country">${country.common_name}</h1>`;
@@ -137,34 +166,28 @@ function stepHTML(country, selectableCountries, points, possiblePoints, guessFla
 }
 
 function resultsHTML(points, possiblePoints) {
-    let html = '';
-
-    html += '<h1>FINISH</h1>';
-    html += `${points}/${possiblePoints}`;
-    html += '<br><br>';
-    html += '<button onclick="initGame()">New game</button>';
-
-    return html;
+    return `<h1>Finish</h1>
+            ${points}/${possiblePoints}
+            <br><br>
+            <button onclick="initGame()" class="button">New Game</button>`;
 }
 
 function selectContinentsFormHTML() {
-    let html = '';
-
-    html += '<h1 class="game-of-flags">Game <span>of</span> Flags</h1>';
+    let html = '<h1 class="game-of-flags">Game <span>of</span> Flags</h1>';
 
     DB.continents.forEach(continent => {
         html += `
-            <label>
+            <label onchange="continentChecboxChange()">
                 <input type="checkbox" name="${continent}">
                 <span>${continent}</span>
             </label>
         `;
     });
 
-    html += '<br><br>';
+    html += '<br><br><br>';
 
     html += `
-        <button onclick="start()">Start</button>
+        <button onclick="start()" data-element="start-game-button" class="button DISABLED">Start Game</button>
     `;
 
     return html;
@@ -173,8 +196,8 @@ function selectContinentsFormHTML() {
 
 
 /* =====================================================================
-    UTILS
-    ===================================================================== */
+   Utils
+   ===================================================================== */
 
 function getRandom(arr, n) {
     let len = arr.length;
