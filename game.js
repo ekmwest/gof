@@ -1,6 +1,6 @@
 import { countries as allCountries } from "https://countries.ekmwest.io/countries.js";
 
-const rounds = 20;
+const rounds = 10;
 
 const gameElement = document.querySelector('#game');
 
@@ -191,7 +191,7 @@ function resultsHTML(level, points, possiblePoints, time) {
                 </tr>
                 <tr>
                     <th>Total Score</th>
-                    <td>${totalScore(level, points, time)}/100</td>
+                    <td>${totalScore(level, points, time)}</td>
                 </tr>
             </table>
             <br><br>
@@ -245,6 +245,5 @@ function getRandom(arr, n) {
 }
 
 function totalScore(level, points, time) {
-    const c = 50;
-    return Math.floor((level * points * c) / (time / 1000));
+    return Math.floor(1000 * level * points / (90 + (time / 1000)));
 }
