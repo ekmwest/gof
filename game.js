@@ -191,7 +191,7 @@ function resultsHTML(level, points, possiblePoints, time) {
                 </tr>
                 <tr>
                     <th>Total Score</th>
-                    <td>${totalScore(level, points, time)}</td>
+                    <td>${totalScore(level, points, time)}/100</td>
                 </tr>
             </table>
             <br><br>
