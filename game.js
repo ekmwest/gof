@@ -1,5 +1,7 @@
 import { countries as allCountries } from "https://countries.ekmwest.io/countries.js";
 
+const rounds = 20;
+
 const gameElement = document.querySelector('#game');
 
 const DB = {
@@ -11,9 +13,12 @@ DB.continents = [...new Set(DB.countries.map(country => country.continent))]
 const State = {
     countries: [],
     possibleCountries: [],
+    continents: [],
     step: 0,
     points: 0,
-    guesses: []
+    guesses: [],
+    startTime: 0,
+    endTime: 0
 }
 
 window.initGame = function () {
@@ -22,12 +27,15 @@ window.initGame = function () {
 
 window.onload = initGame;
 
-function initState(countries, possibleCountries) {
+function initState(countries, possibleCountries, continents) {
     State.countries = countries;
     State.possibleCountries = possibleCountries;
+    State.continents = continents;
     State.step = null;
     State.points = 0;
     State.guesses = [];
+    State.startTime = Date.now();
+    State.endTime = 0;
 }
 
 
@@ -58,9 +66,9 @@ window.start = function () {
 
     const possibleCountries = DB.countries.filter(country => continents.includes(country.continent));
 
-    const countries = getRandom(possibleCountries, 20);
+    const countries = getRandom(possibleCountries, rounds);
 
-    initState(countries, possibleCountries);
+    initState(countries, possibleCountries, continents);
 
     next();
 }
@@ -123,7 +131,8 @@ window.next = function () {
 }
 
 window.finish = function () {
-    gameElement.innerHTML = resultsHTML(State.points, State.step);
+    State.endTime = Date.now();
+    gameElement.innerHTML = resultsHTML(State.continents.length, State.points, State.step, State.endTime - State.startTime);
 }
 
 
@@ -165,9 +174,26 @@ function stepHTML(country, selectableCountries, points, possiblePoints, guessFla
     return html;
 }
 
-function resultsHTML(points, possiblePoints) {
+function resultsHTML(level, points, possiblePoints, time) {
     return `<h1>Finish</h1>
-            ${points}/${possiblePoints}
+            <table class="results-table">
+                <tr>
+                    <th>Level</th>
+                    <td>${level}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>${Math.floor(time / 1000)} sec</td>
+                </tr>
+                <tr>
+                    <th>Points</th>
+                    <td>${points}/${possiblePoints}</td>
+                </tr>
+                <tr>
+                    <th>Total Score</th>
+                    <td>${totalScore(level, points, time)}</td>
+                </tr>
+            </table>
             <br><br>
             <button onclick="initGame()" class="button">New Game</button>`;
 }
@@ -216,4 +242,9 @@ function getRandom(arr, n) {
     }
 
     return result;
+}
+
+function totalScore(level, points, time) {
+    const c = 50;
+    return Math.floor((level * points * c) / (time / 1000));
 }
