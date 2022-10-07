@@ -44,6 +44,7 @@ body {
     margin: 1.5em auto .8em;
     font-size: 3em;
     line-height: 1;
+    letter-spacing: -1px;
 }
 
 .game-of-flags span {
@@ -232,12 +233,14 @@ label [type=checkbox] {
     background-color: #eee;
 }
 
-.select-country.CORRECT {
+.is-desktop .select-country.CORRECT,
+.is-mobile .select-country.CORRECT {
     background-color: var(--green);
     color: #fff;
 }
 
-.select-country.WRONG {
+.is-desktop .select-country.WRONG,
+.is-mobile .select-country.WRONG {
     background-color: var(--red);
     color: #fff;
 }
