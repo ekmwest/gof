@@ -1,6 +1,6 @@
 (function () {
 
-    const MOBILE_WIDTH = 768;
+    const MOBILE_WIDTH = 767;
 
     const query = window.matchMedia(`(max-width: ${MOBILE_WIDTH}px)`);
     query.addEventListener('change', setScreenMode);

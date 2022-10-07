@@ -146,6 +146,7 @@ label [type=checkbox] {
 .guess-country {
     margin: 32px auto;
     font-size: 42px;
+    line-height: 1.1;
 }
 
 .is-mobile .guess-country {
