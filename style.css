@@ -228,7 +228,7 @@ label [type=checkbox] {
     background-color: #fff;
 }
 
-.select-country:hover {
+.is-desktop .select-country:hover {
     background-color: #eee;
 }
 
