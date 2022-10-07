@@ -42,7 +42,8 @@ body {
     font-variant: small-caps;
     color: var(--brand);
     margin: 1.5em auto .8em;
-    font-size: 3em;
+    font-size: 4em;
+    text-shadow: 1px 2px #444;
     line-height: 1;
     letter-spacing: -1px;
 }
@@ -122,8 +123,8 @@ label [type=checkbox] {
 }
 
 .answers span {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: #fff;
     border: 1px solid #999;
@@ -236,12 +237,14 @@ label [type=checkbox] {
 .is-desktop .select-country.CORRECT,
 .is-mobile .select-country.CORRECT {
     background-color: var(--green);
+    border-color: var(--green);
     color: #fff;
 }
 
 .is-desktop .select-country.WRONG,
 .is-mobile .select-country.WRONG {
     background-color: var(--red);
+    border-color: var(--red);
     color: #fff;
 }
 
