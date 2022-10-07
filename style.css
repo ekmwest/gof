@@ -43,7 +43,7 @@ body {
     color: var(--brand);
     margin: 1.5em auto .8em;
     font-size: 4em;
-    text-shadow: 1px 2px #444;
+    text-shadow: 1px 1px 1px #000;
     line-height: 1;
     letter-spacing: -1px;
 }
