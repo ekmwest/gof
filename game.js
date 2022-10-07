@@ -77,7 +77,7 @@ window.guess = function (guessedCountryCode, correctCountryCode) {
     const correctAnswer = guessedCountryCode === correctCountryCode;
 
     State.points = correctAnswer ? State.points + 1 : State.points;
-    const wait = correctAnswer ? 500 : 3000;
+    const wait = correctAnswer ? 500 : 4000;
     correctAnswer ? State.guesses.push(true) : State.guesses.push(false);
 
     console.log(State.guesses);
