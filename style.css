@@ -41,8 +41,9 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-variant: small-caps;
     color: var(--brand);
-    margin: 1.5em auto 1em;
+    margin: 1.5em auto .8em;
     font-size: 3em;
+    line-height: 1;
 }
 
 .game-of-flags span {
