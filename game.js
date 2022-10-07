@@ -172,7 +172,7 @@ function stepHTML(country, selectableCountries, points, possiblePoints, guessFla
     });
 
     html += `<div class="quit-game-panel">
-                 <button class="quit-game-button">Quit</button>
+                 <button class="quit-game-button" onclick="location.href='/'">Quit</button>
              </div>`;
 
     return html;
