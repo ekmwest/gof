@@ -77,7 +77,7 @@ window.guess = function (guessedCountryCode, correctCountryCode) {
     const correctAnswer = guessedCountryCode === correctCountryCode;
 
     State.points = correctAnswer ? State.points + 1 : State.points;
-    const wait = correctAnswer ? 600 : 1600;
+    const wait = correctAnswer ? 500 : 3000;
     correctAnswer ? State.guesses.push(true) : State.guesses.push(false);
 
     console.log(State.guesses);
@@ -167,9 +167,13 @@ function stepHTML(country, selectableCountries, points, possiblePoints, guessFla
         if (guessFlag) {
             html += `<img class="select-flag" data-country-code="${selectableCountry.code}" src="${selectableCountry.flag_url}" onclick="guess('${selectableCountry.code}', '${country.code}')" />`;
         } else {
-            html += `<span class="select-country" data-country-code="${selectableCountry.code}" onclick="guess('${selectableCountry.code}', '${country.code}')">${selectableCountry.common_name}</span>`;
+            html += `<button class="select-country" data-country-code="${selectableCountry.code}" onclick="guess('${selectableCountry.code}', '${country.code}')">${selectableCountry.common_name}</button>`;
         }
     });
+
+    html += `<div class="quit-game-panel">
+                 <button class="quit-game-button">Quit</button>
+             </div>`;
 
     return html;
 }
