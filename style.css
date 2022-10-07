@@ -164,11 +164,11 @@ label [type=checkbox] {
 .guess-flag {
     height: 200px;
     display: block;
-    margin: 32px auto;
+    margin: 24px auto;
 }
 
 .is-mobile .guess-flag {
-    height: 148px;
+    height: 132px;
 }
 
 
@@ -216,15 +216,15 @@ label [type=checkbox] {
 
 .select-country {
     font: inherit;
+    color: inherit;
     font-size: 1.1em;
     cursor: pointer;
     display: inline-block;
-    margin: .3em;
+    margin: .2em;
     font-weight: 600;
-    border: 1px solid #777;
-    border-radius: 32px;
+    border: 1px solid #888;
     border-radius: 4px;
-    padding: .3em 1em;
+    padding: .2em 1em .3em;
     background-color: #fff;
 }
 
@@ -249,8 +249,8 @@ label [type=checkbox] {
    ===================================================================== */
 
 .quit-game-panel {
-    margin: 3em 0;
-    padding: 2em 0;
+    margin: 2em 0;
+    padding: 1em 0;
     border-top: 1px solid #999;
 }
 
