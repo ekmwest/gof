@@ -63,7 +63,7 @@ body {
 label {
     display: inline-block;
     margin: 0;
-    padding: .5em;
+    padding: .6em .5em;
     cursor: pointer;
 }
 

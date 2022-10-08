@@ -80,8 +80,6 @@ window.guess = function (guessedCountryCode, correctCountryCode) {
     const wait = correctAnswer ? 500 : 4000;
     correctAnswer ? State.guesses.push(true) : State.guesses.push(false);
 
-    console.log(State.guesses);
-
     const correctElement = document.querySelector(`[data-country-code="${correctCountryCode}"]`);
     correctElement.classList.add('CORRECT');
 
