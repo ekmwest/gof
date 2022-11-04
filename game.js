@@ -1,16 +1,39 @@
 import { countries as allCountries } from "https://countries.ekmwest.io/countries.js";
 
-const rounds = 10;
 
-const gameElement = document.querySelector('#game');
+
+/* =====================================================================
+   Database
+   ===================================================================== */
 
 const DB = {
-    countries: allCountries.filter(country => country.independent)
+    countries: allCountries.filter(country => country.independent),
+    continents: [...new Set(allCountries.filter(country => country.independent).map(country => country.continent))].sort()
 };
 
 window.DB = DB;
 
-DB.continents = [...new Set(DB.countries.map(country => country.continent))].sort();
+
+
+/* =====================================================================
+   Constants
+   ===================================================================== */
+
+const rounds = 10;
+
+
+
+/* =====================================================================
+   Elements
+   ===================================================================== */
+
+const gameElement = document.querySelector('#game');
+
+
+
+/* =====================================================================
+   State
+   ===================================================================== */
 
 const State = {
     countries: [],
@@ -25,11 +48,19 @@ const State = {
 
 window.State = State;
 
-window.initGame = function () {
-    gameElement.innerHTML = selectContinentsFormHTML();
-}
 
-window.onload = initGame;
+
+/* =====================================================================
+   Load
+   ===================================================================== */
+
+window.onload = () => initGame();
+
+
+
+/* =====================================================================
+   Actions
+   ===================================================================== */
 
 function initState(countries, possibleCountries, continents) {
     State.countries = countries;
@@ -42,11 +73,9 @@ function initState(countries, possibleCountries, continents) {
     State.endTime = 0;
 }
 
-
-
-/* =====================================================================
-   Actions
-   ===================================================================== */
+window.initGame = function () {
+    gameElement.innerHTML = selectContinentsFormHTML();
+}
 
 window.continentChecboxChange = function () {
     const checkedContinents = document.querySelectorAll('input:checked');
@@ -174,7 +203,7 @@ function stepHTML(country, selectableCountries, points, possiblePoints, guessFla
     });
 
     html += `<div class="quit-game-panel">
-                 <button class="quit-game-button" onclick="location.href='/'">Quit</button>
+                 <button class="quit-game-button" onclick="initGame()">Quit</button>
              </div>`;
 
     return html;
