@@ -8,7 +8,9 @@ const DB = {
     countries: allCountries.filter(country => country.independent)
 };
 
-DB.continents = [...new Set(DB.countries.map(country => country.continent))]
+window.DB = DB;
+
+DB.continents = [...new Set(DB.countries.map(country => country.continent))].sort();
 
 const State = {
     countries: [],
@@ -20,6 +22,8 @@ const State = {
     startTime: 0,
     endTime: 0
 }
+
+window.State = State;
 
 window.initGame = function () {
     gameElement.innerHTML = selectContinentsFormHTML();
@@ -77,7 +81,7 @@ window.guess = function (guessedCountryCode, correctCountryCode) {
     const correctAnswer = guessedCountryCode === correctCountryCode;
 
     State.points = correctAnswer ? State.points + 1 : State.points;
-    const wait = correctAnswer ? 500 : 4000;
+    const wait = correctAnswer ? 300 : 3000;
     correctAnswer ? State.guesses.push(true) : State.guesses.push(false);
 
     const correctElement = document.querySelector(`[data-country-code="${correctCountryCode}"]`);
@@ -206,7 +210,7 @@ function selectContinentsFormHTML() {
     DB.continents.forEach(continent => {
         html += `
             <label onchange="continentChecboxChange()">
-                <input type="checkbox" name="${continent}">
+                <input type="checkbox" name="${continent}" ${State.continents.includes(continent) ? "checked" : ""}>
                 <span>${continent}</span>
             </label>
         `;
@@ -214,9 +218,9 @@ function selectContinentsFormHTML() {
 
     html += '<br><br><br>';
 
-    html += `
-        <button onclick="start()" data-element="start-game-button" class="button DISABLED">Start Game</button>
-    `;
+    const anyContinentSelected = DB.continents.some(c => State.continents.includes(c));
+
+    html += `<button onclick="start()" data-element="start-game-button" class="button ${anyContinentSelected ? "" : "DISABLED"}">Start Game</button>`;
 
     return html;
 }
