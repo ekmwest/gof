@@ -65,6 +65,7 @@ label {
     margin: 0;
     padding: .6em .5em;
     cursor: pointer;
+    font-weight: 600;
 }
 
 
@@ -164,7 +165,7 @@ label [type=checkbox] {
    ===================================================================== */
 
 .guess-flag {
-    height: 200px;
+    height: 164px;
     display: block;
     margin: 32px auto 24px;
 }
@@ -181,7 +182,7 @@ label [type=checkbox] {
 
 .select-flag {
     cursor: pointer;
-    height: 80px;
+    height: 64px;
     margin: .4em .6em;
 }
 
@@ -220,6 +221,7 @@ label [type=checkbox] {
     font: inherit;
     color: inherit;
     font-size: 2em;
+    font-size: 1.5em;
     cursor: pointer;
     display: inline-block;
     margin: .2em;
@@ -231,7 +233,7 @@ label [type=checkbox] {
 }
 
 .is-mobile .select-country {
-    font-size: 1.4em;
+    font-size: 1.2em;
 }
 
 .is-desktop .select-country:hover {
