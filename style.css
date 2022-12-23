@@ -61,27 +61,83 @@ body {
 
 
 /* =====================================================================
-   Label
+   Switch Checkbox
    ===================================================================== */
 
-label {
-    display: inline-block;
-    margin: 0;
-    padding: .6em .5em;
+.switch {
+    position: relative;
     cursor: pointer;
-    font-size: 1.1em;
+    display: inline-block;
+    display: block;
+    text-align: left;
+    width: 220px;
+    height: 34px;
+    margin: 1em auto;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    width: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+    background-color: var(--brand);
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.switch span + span {
     font-weight: 600;
+    font-size: 1.2em;
+    line-height: 34px;
+    margin-left: 64px;
+    display: inline-block;
+    color: #777;
 }
 
-
-
-/* =====================================================================
-   Checkbox
-   ===================================================================== */
-
-label [type=checkbox] {
-    transform: scale(1.5);
+.switch input:checked + span + span {
+    color: inherit;
 }
+
 
 
 
@@ -119,8 +175,9 @@ label [type=checkbox] {
 
 .progress-bar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 4px;
+    gap: 3px;
     margin: 32px auto;
 }
 
@@ -129,8 +186,8 @@ label [type=checkbox] {
 }
 
 .progress-bar span {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background-color: #fff;
     border: 1px solid #999;

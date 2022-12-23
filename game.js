@@ -99,7 +99,7 @@ window.start = function () {
 
     const possibleCountries = DB.countries.filter(country => continents.includes(country.continent));
 
-    const countries = getRandom(possibleCountries, rounds);
+    const countries = getRandom(possibleCountries, rounds * continents.length);
 
     initState(countries, possibleCountries, continents);
 
@@ -224,27 +224,8 @@ function resultsHTML(level, points, possiblePoints, time, progressMax, guesses) 
 
     html += "</div>";
 
-    html += `<h1>Finish</h1>
-            <table class="results-table">
-                <tr>
-                    <th>Level</th>
-                    <td>${level}</td>
-                </tr>
-                <tr>
-                    <th>Time</th>
-                    <td>${Math.floor(time / 1000)} sec</td>
-                </tr>
-                <tr>
-                    <th>Points</th>
-                    <td>${points}/${possiblePoints}</td>
-                </tr>
-                <tr>
-                    <th>Total Score</th>
-                    <td>${totalScore(level, points, time)}</td>
-                </tr>
-            </table>
-            <br><br>
-            <button onclick="initGame()" class="button">New Game</button>`;
+    html += `<h1>${points}/${possiblePoints}</h1>
+            <button onclick="initGame()" class="button" style="margin-top: 8px;">New Game</button>`;
 
     return html;
 }
@@ -254,14 +235,15 @@ function selectContinentsFormHTML() {
 
     DB.continents.forEach(continent => {
         html += `
-            <label onchange="continentChecboxChange()">
+            <label class="switch" onchange="continentChecboxChange()">
                 <input type="checkbox" name="${continent}" ${State.continents.includes(continent) ? "checked" : ""}>
+                <span class="slider"></span>
                 <span>${continent}</span>
             </label>
         `;
     });
 
-    html += '<br><br><br>';
+    html += '<br><br>';
 
     const anyContinentSelected = DB.continents.some(c => State.continents.includes(c));
 
