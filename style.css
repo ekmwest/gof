@@ -114,21 +114,21 @@ label [type=checkbox] {
 
 
 /* =====================================================================
-   Answers
+   Progress Bar
    ===================================================================== */
 
-.answers {
+.progress-bar {
     display: flex;
     justify-content: center;
     gap: 4px;
     margin: 32px auto;
 }
 
-.is-mobile .answers {
+.is-mobile .progress-bar {
     margin: 32px auto 24px;
 }
 
-.answers span {
+.progress-bar span {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -136,12 +136,12 @@ label [type=checkbox] {
     border: 1px solid #999;
 }
 
-.answers span.correct {
+.progress-bar span.correct {
     background-color: var(--green);
     border-color: var(--green);
 }
 
-.answers span.wrong {
+.progress-bar span.wrong {
     background-color: var(--red);
     border-color: var(--red);
 }

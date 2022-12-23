@@ -163,7 +163,7 @@ window.next = function () {
 
 window.finish = function () {
     State.endTime = Date.now();
-    gameElement.innerHTML = resultsHTML(State.continents.length, State.points, State.step, State.endTime - State.startTime);
+    gameElement.innerHTML = resultsHTML(State.continents.length, State.points, State.step, State.endTime - State.startTime, State.countries.length, State.guesses);
 }
 
 
@@ -174,7 +174,7 @@ window.finish = function () {
 
 function stepHTML(country, selectableCountries, points, possiblePoints, guessFlag, progressValue, progressMax, guesses) {
 
-    let html = "<div class='answers'>";
+    let html = "<div class='progress-bar'>";
 
     for (let s = 0; s < progressMax; s++) {
         if (guesses[s] === true) {
@@ -209,8 +209,22 @@ function stepHTML(country, selectableCountries, points, possiblePoints, guessFla
     return html;
 }
 
-function resultsHTML(level, points, possiblePoints, time) {
-    return `<h1>Finish</h1>
+function resultsHTML(level, points, possiblePoints, time, progressMax, guesses) {
+    let html = "<div class='progress-bar'>";
+
+    for (let s = 0; s < progressMax; s++) {
+        if (guesses[s] === true) {
+            html += "<span class='correct'></span>";
+        } else if (guesses[s] === false) {
+            html += "<span class='wrong'></span>";
+        } else {
+            html += "<span></span>";
+        }
+    }
+
+    html += "</div>";
+
+    html += `<h1>Finish</h1>
             <table class="results-table">
                 <tr>
                     <th>Level</th>
@@ -231,6 +245,8 @@ function resultsHTML(level, points, possiblePoints, time) {
             </table>
             <br><br>
             <button onclick="initGame()" class="button">New Game</button>`;
+
+    return html;
 }
 
 function selectContinentsFormHTML() {
