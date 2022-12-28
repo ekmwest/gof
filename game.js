@@ -237,8 +237,8 @@ function selectContinentsFormHTML() {
         html += `
             <label class="switch" onchange="continentChecboxChange()">
                 <input type="checkbox" name="${continent}" ${State.continents.includes(continent) ? "checked" : ""}>
+                <span class="label">${continent}</span>
                 <span class="slider"></span>
-                <span>${continent}</span>
             </label>
         `;
     });

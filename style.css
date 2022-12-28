@@ -70,7 +70,7 @@ body {
     display: inline-block;
     display: block;
     text-align: left;
-    width: 220px;
+    width: 230px;
     height: 34px;
     margin: 1em auto;
 }
@@ -83,12 +83,12 @@ body {
 }
 
 /* The slider */
-.slider {
+.switch .slider {
     position: absolute;
     cursor: pointer;
     width: 60px;
     top: 0;
-    left: 0;
+    /* left: 0; */
     right: 0;
     bottom: 0;
     background-color: #ccc;
@@ -99,7 +99,7 @@ body {
     border-radius: 34px;
 }
 
-.slider:before {
+.switch .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -114,27 +114,27 @@ body {
     border-radius: 50%;
 }
 
-input:checked+.slider {
+.switch input:checked ~ .slider {
     background-color: #2196F3;
     background-color: var(--brand);
 }
 
-input:checked+.slider:before {
+.switch input:checked ~ .slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
 
-.switch span + span {
+.switch .label {
     font-weight: 600;
     font-size: 1.2em;
     line-height: 34px;
-    margin-left: 64px;
+    /* margin-left: 64px; */
     display: inline-block;
     color: #777;
 }
 
-.switch input:checked + span + span {
+.switch input:checked ~ .label {
     color: inherit;
 }
 
