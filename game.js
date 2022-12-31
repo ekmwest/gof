@@ -3,11 +3,19 @@ import { countries as allCountries } from "https://countries.ekmwest.io/countrie
 
 
 /* =====================================================================
+   Extra Countries
+   ===================================================================== */
+
+const EXTRA_COUNTRIES = ['GL', 'HK', 'MO', 'PS', 'TW', 'PR'];
+
+
+
+/* =====================================================================
    Database
    ===================================================================== */
 
 const DB = {
-    countries: allCountries.filter(country => country.independent),
+    countries: allCountries.filter(country => country.independent || EXTRA_COUNTRIES.includes(country.code.toUpperCase())),
     continents: [...new Set(allCountries.filter(country => country.independent).map(country => country.continent))].sort()
 };
 
@@ -248,6 +256,8 @@ function selectContinentsFormHTML() {
     const anyContinentSelected = DB.continents.some(c => State.continents.includes(c));
 
     html += `<button onclick="start()" data-element="start-game-button" class="button ${anyContinentSelected ? "" : "DISABLED"}">Start Game</button>`;
+
+    html += `<footer><a href="/about.html">About</a></footer>`;
 
     return html;
 }

@@ -6,6 +6,7 @@
     --red: #d30505;
     --green: #017701;
     --brand: #b30000;
+    --color: #222;
 }
 
 
@@ -15,6 +16,7 @@
 
 body {
     background-color: #e5e5e5;
+    color: var(--color);
     text-align: center;
     font-family: -apple-system, 'Segoe UI', sans-serif;
     -webkit-tap-highlight-color: transparent;
@@ -114,12 +116,12 @@ body {
     border-radius: 50%;
 }
 
-.switch input:checked ~ .slider {
+.switch input:checked~.slider {
     background-color: #2196F3;
     background-color: var(--brand);
 }
 
-.switch input:checked ~ .slider:before {
+.switch input:checked~.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
@@ -134,7 +136,7 @@ body {
     color: #777;
 }
 
-.switch input:checked ~ .label {
+.switch input:checked~.label {
     color: inherit;
 }
 
@@ -395,4 +397,21 @@ body {
     background-color: #ccc;
     color: #777;
     cursor: default;
+}
+
+
+
+/* =====================================================================
+   footer
+   ===================================================================== */
+
+footer {
+    border-top: 1px solid #ccc;
+    margin-top: 4em;
+    padding: 1em 1em 2em;
+    text-align: center;
+}
+
+footer a {
+    color: #777;
 }
