@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="/images/favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
     <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
@@ -22,61 +23,37 @@
             margin: 1.5em 0 .5em;
             font-size: 1.2em;
         }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        a,
+        a:visited {
+            color: var(--brand);
+        }
     </style>
 
     <div style="text-align:left;max-width:640px;margin: 0 auto;font-size: 18px;">
 
-        <h1 style="margin-top: 2em;text-align:center;">About</h1>
+        <h1 style="margin-top:2em; margin-bottom:1em; text-align:center; font-size:3em;">About</h1>
 
-        <p><span style="color:var(--brand);font-family:Georgia, 'Times New Roman', Times, serif;font-weight:bold;">Game of Flags</span> was written because I wanted to learn all national flags. Flags are fascinating and gaming is a fun way to learn.</p>
-        
-        <p>The game is web based and compatible with all major desktop, mobile and tablet browsers.</p>
+        <div id="content"></div>
 
-        <p>The flags in the game represents all independent nations officially assigned by the <a target="_blank" href="https://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1</a> standard. Special exemptions has been made for some non-independent regions and territories:</p>
-
-        <ul>
-            <li>Greenland</li>
-            <li>Hong Kong</li>
-            <li>Macao</li>
-            <li>Palestine</li>
-            <li>Puerto Rico</li>
-            <li>Taiwan</li>
-        </ul>
-
-
-        <h2>Learning Trick — Visual Associations</h2>
-
-        <p>Memorizing all flags can be difficult, especially if you are getting older, like me.</p>
-
-        <p>A very effective trick is to create a visual association between a flag and its country name. The visual association doesn't have to make much sense to anyone but you, the important part is that you come up with your own association. Here are some associations that I created for myself:</p>
-
-        <ul>
-            <li>The triangles in the flag of <em>East</em> Timor looks like a compass pointing towards <em>east</em>.</li>
-            <li>The moon in the flag of <em>Sing</em>apore looks like it's <em>sing</em>ing, and the stars looks like little music notes.</li>
-            <li>The red band in the flag of <em>Central</em> African Republic, is positioned at the <em>center</em> of the flag.</li>
-        </ul>
-
-        <p> If you can't memorize a flag, spend some time looking at the flag and try to come up with your own visual association. Once you've found your own association, the flag will be easy to remember.</p>
-
-
-        <h2>Learning Trick — One Continent At A Time</h2>
-
-        <p>Another trick is to learn one continent at a time. You can use the country database that this game is build upon:</p>
-
-        <ol>
-            <li>Navigate to <a target="_blank" href="https://countries.ekmwest.io/">countries.ekmwest.io</a>.</li>
-            <li>Check the "Hide Country Names" checkbox.</li>
-            <li>Search for "Europe", "Asia", or any other continent.</li>
-            <li>Now you'll see the flags for that continent, without the country names.</li>
-            <li>Look at a flag and guess its name.</li>
-            <li>Click the flag to reveal the name.</li>
-        </ol>
-
-        <h2>License</h2>
-
-        <p>This game is published under <a href="https://github.com/ekmwest/gof/blob/main/LICENSE" target="_blank">MIT License</a>. The game is completely free to use, but you can also use <a href="https://github.com/ekmwest/gof/" target="_blank">the source code</a> in any way you wish.</p>
+        <script>
+            (async function () {
+                const res = await fetch('/README.md');
+                const markdownText = await res.text();
+                document.getElementById('content').innerHTML = marked.parse(markdownText);
+            })();
+        </script>
 
         <footer><a href="/">Back to Game</a></footer>
+
     </div>
 
 </body>
