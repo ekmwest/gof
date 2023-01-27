@@ -31,13 +31,13 @@ If you have troubles memorizing a flag, spend a few minutes studying the flag an
 
 Another trick is to learn one continent at a time:
 
-- Navigate to [countries.ekmwest.io](https://countries.ekmwest.io/)</a>.
-- Check the **Hide Country Names** checkbox.
-- Search for *Europe*, *Asia*, or any other continent.
-- Now you'll see the flags for that continent, without the country names.
-- Look at a flag and guess its country name.
-- Click the flag to reveal its name.
-- Click the back-button in your browser to go back.
+1. Navigate to <a href="https://countries.ekmwest.io/" target="_blank">countries.ekmwest.io</a>.
+2. Check the checkbox **Hide Country Names**.
+3. Search for *"Europe"*, *"Asia"*, or any other continent.
+4. Now you'll see the flags for that continent, without the country names.
+5. Look at a flag and guess its country name.
+6. Click the flag to reveal its name.
+7. Click the back-button in your browser to go back.
 
 
 
