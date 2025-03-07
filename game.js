@@ -46,7 +46,7 @@ const gameElement = document.querySelector('#game');
 const State = {
     countries: [],
     possibleCountries: [],
-    continents: [],
+    continents: DB.continents,
     step: 0,
     points: 0,
     guesses: [],
